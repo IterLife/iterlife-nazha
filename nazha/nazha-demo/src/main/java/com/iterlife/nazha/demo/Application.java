@@ -3,6 +3,12 @@ package com.iterlife.nazha.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.ComponentScan.Filter;
+
+import com.iterlife.nazha.core.annotation.Job;
 
 /**
 *
@@ -12,11 +18,12 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 * @tags 
 */
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@Configuration
+@ComponentScan(basePackages = { "com.iterlife.nazha" }, useDefaultFilters = false, includeFilters = @Filter(type = FilterType.ANNOTATION, classes = { Job.class }))
 public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
-    
 }

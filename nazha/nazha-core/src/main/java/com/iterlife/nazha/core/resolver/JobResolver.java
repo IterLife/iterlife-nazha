@@ -9,7 +9,7 @@
  **/
 package com.iterlife.nazha.core.resolver;
 
-import com.iterlife.nazha.core.entity.Job;
+import com.iterlife.nazha.core.entity.JobEntity;
 
 /**
  *
@@ -20,5 +20,5 @@ import com.iterlife.nazha.core.entity.Job;
  */
 public interface JobResolver {
 
-    public Job resolver();
+    public JobEntity resolver();
 }

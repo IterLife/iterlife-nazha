@@ -16,6 +16,6 @@ package com.iterlife.nazha.core.entity;
  * @date 2019 2019年2月13日 下午2:12:05
  * @tags 
  */
-public class Job extends Object {
-    
+public class JobEntity extends Object {
+
 }

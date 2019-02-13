@@ -9,7 +9,7 @@
  **/
 package com.iterlife.nazha.core.resolver.impl;
 
-import com.iterlife.nazha.core.entity.Job;
+import com.iterlife.nazha.core.entity.JobEntity;
 import com.iterlife.nazha.core.resolver.JobResolver;
 
 /**
@@ -25,7 +25,7 @@ public class AnnotationJobResolver implements JobResolver {
      * @see com.iterlife.nazha.core.resolver.JobResolver#resolver()
      */
     @Override
-    public Job resolver() {
+    public JobEntity resolver() {
         // TODO Auto-generated method stub
         return null;
     }
