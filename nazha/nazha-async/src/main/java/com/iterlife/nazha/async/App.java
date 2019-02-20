@@ -1,4 +1,4 @@
-package com.iterlife.nazha.asyn;
+package com.iterlife.nazha.async;
 
 /**
 *
