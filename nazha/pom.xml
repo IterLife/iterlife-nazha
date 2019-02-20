@@ -96,7 +96,7 @@
 		<module>nazha-core</module>
 		<module>nazha-demo</module>
 		<module>nazha-cache</module>
-		<module>nazha-asyn</module>
+		<module>nazha-async</module>
 		<module>nazha-batch</module>
 		<module>nazha-cluster</module>
 		<module>nazha-concurrent</module>
