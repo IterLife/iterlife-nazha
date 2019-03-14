@@ -50,3 +50,5 @@ buildNumber.properties
 
 
 ### Project ###
+nazha/nazha-test/src/main/java/com/iterlife/nazha/test/TraceIdService.java
+nazha/nazha-test/src/main/java/com/iterlife/nazha/test/MatrixTest.java
