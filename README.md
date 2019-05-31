@@ -1,2 +1,2 @@
 # iterlife-nazha
-A high-performance Web parallel computing framework based on Sofa Boot 3.x
+A high-performance Web parallel computing framework based on SOFABoot 3.x
