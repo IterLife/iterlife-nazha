@@ -13,7 +13,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.io.ResourceLoader;
 
 import com.iterlife.nazha.core.entity.JobEntity;
-import com.iterlife.nazha.core.resolver.JobResolver;
+import com.iterlife.nazha.core.resolver.AbstractJobResolver;
 
 /**
  *
@@ -22,10 +22,14 @@ import com.iterlife.nazha.core.resolver.JobResolver;
  * @date 2019 2019年2月13日 下午2:10:43
  * @tags 
  */
-public class JobEntityResolver extends JobResolver {
+public class JobEntityResolver extends AbstractJobResolver {
+
+    public JobEntityResolver(Environment environment) {
+        super(environment);
+    }
 
     /* (non-Javadoc)
-     * @see com.iterlife.nazha.core.resolver.JobResolver#resolver2Entity()
+     * @see com.iterlife.nazha.core.resolver.AbstractJobResolver#resolver2Entity()
      */
     @Override
     public JobEntity resolver2Entity() {

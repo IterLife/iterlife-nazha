@@ -7,14 +7,20 @@
 	<parent>
 		<groupId>com.iterlife</groupId>
 		<artifactId>nazha</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.0-release</version>
 	</parent>
 	<artifactId>nazha-test</artifactId>
 	<name>nazha-test</name>
-	<url>http://maven.apache.org</url>
+	<packaging>jar</packaging>
+	<version>${project.release.version}</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 </project>

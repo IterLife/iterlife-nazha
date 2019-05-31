@@ -7,19 +7,22 @@
 	<parent>
 		<groupId>com.iterlife</groupId>
 		<artifactId>nazha</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.0-release</version>
 	</parent>
+
 	<artifactId>nazha-async</artifactId>
 	<name>nazha-async</name>
-	<url>http://maven.apache.org</url>
+	<version>${project.release.version}</version>
+	<packaging>jar</packaging>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>com.iterlife</groupId>
-			<artifactId>nazha-util</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>

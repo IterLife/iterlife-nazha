@@ -1,7 +1,7 @@
 /**
  *
  * @project nazha-core
- * @file com.iterlife.nazha.core.resolver.JobResolver.java
+ * @file com.iterlife.nazha.core.resolver.AbstractJobResolver.java
  * @version 1.0.0
  * Copyright 2019 - 2019 for Lu Jie
  * https://www.iterlife.com
@@ -46,7 +46,7 @@ import com.iterlife.nazha.core.entity.JobEntity;
  * @date 2019 2019年2月13日 下午2:09:57
  * @tags 
  */
-public abstract class JobResolver implements EnvironmentCapable, ResourceLoaderAware {
+public abstract class AbstractJobResolver implements EnvironmentCapable, ResourceLoaderAware {
     static final String             DEFAULT_RESOURCE_PATTERN = "**/*.class";
 
     protected final Log             logger                   = LogFactory.getLog(getClass());
@@ -63,7 +63,7 @@ public abstract class JobResolver implements EnvironmentCapable, ResourceLoaderA
 
     private MetadataReaderFactory   metadataReaderFactory;
 
-    public JobResolver(Environment environment) {
+    public AbstractJobResolver(Environment environment) {
         setEnvironment(environment);
         setResourceLoader(null);
     }
