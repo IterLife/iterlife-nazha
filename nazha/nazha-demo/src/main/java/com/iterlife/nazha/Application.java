@@ -17,7 +17,7 @@ import org.springframework.context.annotation.FilterType;
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @Configuration
-@ComponentScan(basePackages = {"com.iterlife.nazha"}, useDefaultFilters = false, includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION))
+@ComponentScan(basePackages = {"com.iterlife.nazha"}, includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION))
 @Slf4j
 public class Application {
 
