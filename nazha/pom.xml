@@ -43,12 +43,17 @@
             <dependency>
                 <groupId>com.alipay.sofa</groupId>
                 <artifactId>healthcheck-sofa-boot-starter</artifactId>
-                <version>${sofa.boot.version}</version>
+                <version>${sofa.boot.release.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.boot.release.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-thymeleaf</artifactId>
                 <version>${spring.boot.release.version}</version>
             </dependency>
             <dependency>
@@ -187,7 +192,6 @@
     </reporting>
     <modules>
         <module>nazha-core</module>
-        <module>nazha-demo</module>
         <module>nazha-cache</module>
         <module>nazha-async</module>
         <module>nazha-batch</module>
@@ -203,7 +207,7 @@
         <profile>
             <id>dev</id>
             <properties>
-                <sofa.boot.version>3.1.3</sofa.boot.version>
+                <sofa.boot.release.version>3.1.3</sofa.boot.release.version>
                 <project.release.version>1.0.0-snapshot</project.release.version>
                 <spring.boot.release.version>2.1.0.RELEASE</spring.boot.release.version>
                 <spring.framework.release.version>5.1.5.RELEASE</spring.framework.release.version>

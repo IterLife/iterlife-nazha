@@ -1,20 +1,13 @@
 /**
- *
  * @project nazha-core
  * @file com.iterlife.nazha.core.resolver.AbstractJobResolver.java
  * @version 1.0.0
  * Copyright 2019 - 2019 for Lu Jie
  * https://www.iterlife.com
- *
  **/
 package com.iterlife.nazha.core.resolver;
 
-import java.io.IOException;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-
+import com.iterlife.nazha.core.entity.JobEntity;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.BeanDefinitionStoreException;
@@ -37,40 +30,51 @@ import org.springframework.core.type.filter.TypeFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 
-import com.iterlife.nazha.core.entity.JobEntity;
+import java.io.IOException;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 /**
- *
- * @desc 
  * @author Lu Jie
+ * @desc
  * @date 2019 2019年2月13日 下午2:09:57
- * @tags 
+ * @tags
  */
 public abstract class AbstractJobResolver implements EnvironmentCapable, ResourceLoaderAware {
-    static final String             DEFAULT_RESOURCE_PATTERN = "**/*.class";
+    static final String DEFAULT_RESOURCE_PATTERN = "**/*.class";
 
-    protected final Log             logger                   = LogFactory.getLog(getClass());
+    protected final Log logger = LogFactory.getLog(getClass());
 
-    private String                  resourcePattern          = DEFAULT_RESOURCE_PATTERN;
+    private String resourcePattern = DEFAULT_RESOURCE_PATTERN;
 
-    private final List<TypeFilter>  includeFilters           = new LinkedList<TypeFilter>();
+    private final List<TypeFilter> includeFilters = new LinkedList<TypeFilter>();
 
-    private final List<TypeFilter>  excludeFilters           = new LinkedList<TypeFilter>();
+    private final List<TypeFilter> excludeFilters = new LinkedList<TypeFilter>();
 
-    private Environment             environment;
+    private Environment environment;
 
     private ResourcePatternResolver resourcePatternResolver;
 
-    private MetadataReaderFactory   metadataReaderFactory;
+    private MetadataReaderFactory metadataReaderFactory;
 
     public AbstractJobResolver(Environment environment) {
         setEnvironment(environment);
         setResourceLoader(null);
     }
 
+    /**
+     * 解析 Job 注解生成具体的 Job 实例
+     */
     public void resolver() {
     }
 
+    /**
+     * 解析 Job 注解生成具体的 Job 实例
+     *
+     * @return JobEntity Job 实例
+     */
     public abstract JobEntity resolver2Entity();
 
     /**
@@ -89,10 +93,11 @@ public abstract class AbstractJobResolver implements EnvironmentCapable, Resourc
 
     /**
      * Reset the configured type filters.
+     *
      * @param useDefaultFilters whether to re-register the default filters for
-     * the {@link Component @Component}, {@link Repository @Repository},
-     * {@link Service @Service}, and {@link Controller @Controller}
-     * stereotype annotations
+     *                          the {@link Component @Component}, {@link Repository @Repository},
+     *                          {@link Service @Service}, and {@link Controller @Controller}
+     *                          stereotype annotations
      * @see #registerDefaultFilters()
      */
     public void resetFilters() {
@@ -105,6 +110,7 @@ public abstract class AbstractJobResolver implements EnvironmentCapable, Resourc
      * This will typically be a {@link ResourcePatternResolver} implementation.
      * <p>Default is a {@code PathMatchingResourcePatternResolver}, also capable of
      * resource pattern resolving through the {@code ResourcePatternResolver} interface.
+     *
      * @see org.springframework.core.io.support.ResourcePatternResolver
      * @see org.springframework.core.io.support.PathMatchingResourcePatternResolver
      */
@@ -143,6 +149,7 @@ public abstract class AbstractJobResolver implements EnvironmentCapable, Resourc
      * Set the Environment to use when resolving placeholders and evaluating
      * {@link Conditional @Conditional}-annotated component classes.
      * <p>The default is a {@link StandardEnvironment}.
+     *
      * @param environment the Environment to use
      */
     public void setEnvironment(Environment environment) {
@@ -156,6 +163,7 @@ public abstract class AbstractJobResolver implements EnvironmentCapable, Resourc
 
     /**
      * Scan the class path for candidate components.
+     *
      * @param basePackage the package to check for annotated classes
      * @return a corresponding Set of autodetected bean definitions
      */
@@ -163,7 +171,7 @@ public abstract class AbstractJobResolver implements EnvironmentCapable, Resourc
         Set<BeanDefinition> candidates = new LinkedHashSet<BeanDefinition>();
         try {
             String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX
-                                       + resolveBasePackage(basePackage) + '/' + this.resourcePattern;
+                    + resolveBasePackage(basePackage) + '/' + this.resourcePattern;
             Resource[] resources = this.resourcePatternResolver.getResources(packageSearchPath);
             boolean traceEnabled = logger.isTraceEnabled();
             boolean debugEnabled = logger.isDebugEnabled();
@@ -195,7 +203,7 @@ public abstract class AbstractJobResolver implements EnvironmentCapable, Resourc
                         }
                     } catch (Throwable ex) {
                         throw new BeanDefinitionStoreException("Failed to read candidate component class: " + resource,
-                            ex);
+                                ex);
                     }
                 } else {
                     if (traceEnabled) {
@@ -214,6 +222,7 @@ public abstract class AbstractJobResolver implements EnvironmentCapable, Resourc
      * the package search path.
      * <p>The default implementation resolves placeholders against system properties,
      * and converts a "."-based package path to a "/"-based resource path.
+     *
      * @param basePackage the base package as specified by the user
      * @return the pattern specification to be used for package searching
      */
@@ -224,6 +233,7 @@ public abstract class AbstractJobResolver implements EnvironmentCapable, Resourc
     /**
      * Determine whether the given class does not match any exclude filter
      * and does match at least one include filter.
+     *
      * @param metadataReader the ASM ClassReader for the class
      * @return whether the class qualifies as a candidate component
      */
@@ -246,6 +256,7 @@ public abstract class AbstractJobResolver implements EnvironmentCapable, Resourc
      * <p>The default implementation checks whether the class is not an interface
      * and not dependent on an enclosing class.
      * <p>Can be overridden in subclasses.
+     *
      * @param beanDefinition the bean definition to check
      * @return whether the bean definition qualifies as a candidate component
      */
@@ -253,7 +264,7 @@ public abstract class AbstractJobResolver implements EnvironmentCapable, Resourc
         AnnotationMetadata metadata = beanDefinition.getMetadata();
         return (metadata.isIndependent()
                 && (metadata.isConcrete()
-                    || (metadata.isAbstract() && metadata.hasAnnotatedMethods(Lookup.class.getName()))));
+                || (metadata.isAbstract() && metadata.hasAnnotatedMethods(Lookup.class.getName()))));
     }
 
     /**
